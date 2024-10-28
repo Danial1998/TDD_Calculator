@@ -8,4 +8,10 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         assertEquals(0, calculator.add(""));
     }
+
+    @Test
+    public void shouldReturnNumberForSingleNumber(){
+        Calculator calculator = new Calculator();
+        assertEquals(1,calculator.add("1"));
+    }
 }
