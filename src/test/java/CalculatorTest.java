@@ -14,4 +14,10 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         assertEquals(1,calculator.add("1"));
     }
+
+    @Test
+    public void shouldReturnSumForTwoNumbersDelimitedByComma(){
+        Calculator calculator = new Calculator();
+        assertEquals(3, calculator.add("1,2"));
+    }
 }
