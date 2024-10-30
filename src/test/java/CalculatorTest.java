@@ -84,4 +84,10 @@ public class CalculatorTest {
         assertEquals(6, calculator.add("//[***]\n1***2***3"));
     }
 
+    @Test
+    public void shouldSupportMultipleDelimiters() {
+        Calculator calculator = new Calculator();
+        assertEquals(10, calculator.add("//[*][%][^]\n1*2%3^4"));
+    }
+
 }

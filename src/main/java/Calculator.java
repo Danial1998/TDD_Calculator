@@ -20,6 +20,7 @@ public class Calculator {
             if (matcher.matches()) {
                 if (matcher.group(2) != null) {
                     delimiter = Pattern.quote(matcher.group(2));
+                    delimiter = createDelimiterRegex(delimiter);
                 } else {
                     delimiter = Pattern.quote(matcher.group(3));
                 }
@@ -43,6 +44,34 @@ public class Calculator {
                 .mapToInt(num->Integer.parseInt(num))
                 .filter(num->num<=1000)
                 .sum();
+    }
+
+    private String createDelimiterRegex(String delimiter) {
+        StringBuilder delimiterRegex = new StringBuilder();
+        char[] delimiterArray = delimiter.substring(2, delimiter.length() - 2).toCharArray(); // Remove brackets []
+
+        StringBuilder tempStr = new StringBuilder();
+
+        for (char c : delimiterArray) {
+            if (c == '[' || c == ']') {
+                if (tempStr.length() > 0) {
+                    delimiterRegex.append(Pattern.quote(tempStr.toString())).append('|');
+                    tempStr.setLength(0);
+                }
+            } else {
+                tempStr.append(c);
+            }
+        }
+
+        if (tempStr.length() > 0) {
+            delimiterRegex.append(Pattern.quote(tempStr.toString()));
+        }
+
+        if (delimiterRegex.length() > 0 && delimiterRegex.charAt(delimiterRegex.length() - 1) == '|') {
+            delimiterRegex.setLength(delimiterRegex.length() - 1);
+        }
+
+        return delimiterRegex.toString();
     }
 
     public int GetCalledCount() {
