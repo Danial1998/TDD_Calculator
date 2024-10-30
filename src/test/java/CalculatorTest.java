@@ -20,4 +20,10 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         assertEquals(3, calculator.add("1,2"));
     }
+
+    @Test
+    public void shouldReturnSumForMultipleNumbers(){
+        Calculator calculator = new Calculator();
+        assertEquals(10,calculator.add("1,2,3,4"));
+    }
 }
