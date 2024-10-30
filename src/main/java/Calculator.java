@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Calculator {
 
@@ -22,8 +23,18 @@ public class Calculator {
 
         String[] tokens = numberString.split(delimiter);
 
+        var negatives = Arrays.stream(tokens)
+                .mapToInt(num->Integer.parseInt(num))
+                .filter(num -> num < 0)
+                .boxed()
+                .collect(Collectors.toList());
+
+        if (!negatives.isEmpty()) {
+            throw new RuntimeException("negatives not allowed: " + negatives);
+        }
+
         return Arrays.stream(tokens)
-                .mapToInt(Integer::parseInt)
+                .mapToInt(num->Integer.parseInt(num))
                 .sum();
     }
 }

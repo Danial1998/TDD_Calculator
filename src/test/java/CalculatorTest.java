@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
@@ -38,4 +39,14 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         assertEquals(3,calculator.add("//;\n1;2"));
     }
+
+    @Test
+    public void shouldRaiseExceptionForNegatives(){
+        Calculator calculator = new Calculator();
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            calculator.add("-1,2,3");
+        });
+        assertEquals("negatives not allowed: [-1]", exception.getMessage());
+    }
+
 }
