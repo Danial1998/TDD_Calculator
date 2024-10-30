@@ -78,4 +78,10 @@ public class CalculatorTest {
         assertEquals(2, calculator.add("2,1001"));
     }
 
+    @Test
+    public void shouldSupportAnyLengthDelimiter() {
+        Calculator calculator = new Calculator();
+        assertEquals(6, calculator.add("//[***]\n1***2***3"));
+    }
+
 }

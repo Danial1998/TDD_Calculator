@@ -12,14 +12,18 @@ public class Calculator {
             return 0;
         }
 
-        String delimiter = ",|\n";
+        String delimiter = "[,\n]";
         String numberString = numbers;
 
         if (numbers.startsWith("//")) {
-            Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+            Matcher matcher = Pattern.compile("//(\\[(.+?)\\]|([^\\n]+))\n(.*)").matcher(numbers);
             if (matcher.matches()) {
-                delimiter = Pattern.quote(matcher.group(1));
-                numberString = matcher.group(2);
+                if (matcher.group(2) != null) {
+                    delimiter = Pattern.quote(matcher.group(2));
+                } else {
+                    delimiter = Pattern.quote(matcher.group(3));
+                }
+                numberString = matcher.group(4); // Remaining numbers
             }
         }
 
