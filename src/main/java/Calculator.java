@@ -4,8 +4,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Calculator {
+    private int callCount = 0;
 
     public int add(String numbers) {
+        callCount++;
         if (numbers.isEmpty()) {
             return 0;
         }
@@ -36,5 +38,9 @@ public class Calculator {
         return Arrays.stream(tokens)
                 .mapToInt(num->Integer.parseInt(num))
                 .sum();
+    }
+
+    public int GetCalledCount() {
+        return callCount;
     }
 }

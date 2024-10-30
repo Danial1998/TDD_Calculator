@@ -58,4 +58,18 @@ public class CalculatorTest {
         assertEquals("negatives not allowed: [-1, -2]", exception.getMessage());
     }
 
+    @Test
+    public void shouldReturnZeroWhenAddNotCalled() {
+        Calculator calculator = new Calculator();
+        assertEquals(0, calculator.GetCalledCount());
+    }
+
+    @Test
+    public void shouldIncrementCountWhenAddCalled() {
+        Calculator calculator = new Calculator();
+        calculator.add("1,2");
+        calculator.add("3,4");
+        assertEquals(2, calculator.GetCalledCount());
+    }
+
 }
