@@ -49,4 +49,13 @@ public class CalculatorTest {
         assertEquals("negatives not allowed: [-1]", exception.getMessage());
     }
 
+    @Test
+    public void shouldRaiseExceptionForMultipleNegatives(){
+        Calculator calculator = new Calculator();
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            calculator.add("-1,-2,3");
+        });
+        assertEquals("negatives not allowed: [-1, -2]", exception.getMessage());
+    }
+
 }
