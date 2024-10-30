@@ -37,6 +37,7 @@ public class Calculator {
 
         return Arrays.stream(tokens)
                 .mapToInt(num->Integer.parseInt(num))
+                .filter(num->num<=1000)
                 .sum();
     }
 

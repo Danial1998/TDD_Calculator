@@ -72,4 +72,10 @@ public class CalculatorTest {
         assertEquals(2, calculator.GetCalledCount());
     }
 
+    @Test
+    public void shouldIgnoreNumbersGreaterThan1000() {
+        Calculator calculator = new Calculator();
+        assertEquals(2, calculator.add("2,1001"));
+    }
+
 }
