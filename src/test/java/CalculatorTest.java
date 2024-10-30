@@ -90,4 +90,10 @@ public class CalculatorTest {
         assertEquals(10, calculator.add("//[*][%][^]\n1*2%3^4"));
     }
 
+    @Test
+    public void shouldSupportMultipleDelimitersOfAnyLength() {
+        Calculator calculator = new Calculator();
+        assertEquals(10, calculator.add("//[**][%%][^^]\n1**2%%3^^4"));
+    }
+
 }
