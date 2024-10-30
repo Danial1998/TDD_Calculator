@@ -7,7 +7,8 @@ public class Calculator {
             return 0;
         }
 
-        return Arrays.stream(numbers.split(","))
+        String[] tokens = numbers.replace("\n", ",").split(",");
+        return Arrays.stream(tokens)
                 .mapToInt(num -> Integer.parseInt(num))
                 .sum();
     }

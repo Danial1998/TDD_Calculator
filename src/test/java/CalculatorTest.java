@@ -26,4 +26,11 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         assertEquals(10,calculator.add("1,2,3,4"));
     }
+
+    @Test
+    public void shouldAcceptNewlineAsValidDelimiter(){
+        Calculator calculator = new Calculator();
+        assertEquals(6,calculator.add("1\n2,3"));
+    }
+
 }
